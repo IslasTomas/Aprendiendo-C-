@@ -15,7 +15,14 @@ namespace Etapa1
             Como la adorsignacion del nombre y el año la hicimos como parametro de entrada al crear 
             el objeto esto ya no lo usamos y pasamos el nombre y año como parametro del metodo
             */
+
+            var curso1=new Curso();
+            curso1.nombre= "101";
+            curso1.turno=TurnoCurso.Tarde;
+
             Console.WriteLine(escuela);
+            Console.WriteLine(curso1.nombre +" , "+curso1.id +"," + curso1.turno );
+            Console.WriteLine($"Nombre de curso: {curso1.nombre}, ID: {curso1.id}\nTurno: {curso1.turno}" );
         }
      }
 }

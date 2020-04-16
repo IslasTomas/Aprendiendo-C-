@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\tomas\\Documents\\PROYECTOS DE CURSOS\\C#\\Etapa1c#\\Etapa1c#.csproj": {}
+    "C:\\Users\\tomas\\Documents\\PROYECTOS DE CURSOS\\C#\\Etapa2\\Etapa1c#.csproj": {}
   },
   "projects": {
-    "C:\\Users\\tomas\\Documents\\PROYECTOS DE CURSOS\\C#\\Etapa1c#\\Etapa1c#.csproj": {
+    "C:\\Users\\tomas\\Documents\\PROYECTOS DE CURSOS\\C#\\Etapa2\\Etapa1c#.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\tomas\\Documents\\PROYECTOS DE CURSOS\\C#\\Etapa1c#\\Etapa1c#.csproj",
+        "projectUniqueName": "C:\\Users\\tomas\\Documents\\PROYECTOS DE CURSOS\\C#\\Etapa2\\Etapa1c#.csproj",
         "projectName": "Etapa1c#",
-        "projectPath": "C:\\Users\\tomas\\Documents\\PROYECTOS DE CURSOS\\C#\\Etapa1c#\\Etapa1c#.csproj",
+        "projectPath": "C:\\Users\\tomas\\Documents\\PROYECTOS DE CURSOS\\C#\\Etapa2\\Etapa1c#.csproj",
         "packagesPath": "C:\\Users\\tomas\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\tomas\\Documents\\PROYECTOS DE CURSOS\\C#\\Etapa1c#\\obj\\",
+        "outputPath": "C:\\Users\\tomas\\Documents\\PROYECTOS DE CURSOS\\C#\\Etapa2\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\tomas\\AppData\\Roaming\\NuGet\\NuGet.Config"
