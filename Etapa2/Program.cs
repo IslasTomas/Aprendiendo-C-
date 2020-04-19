@@ -27,14 +27,17 @@ namespace Etapa1
             arreglo[0] = curso1;
             arreglo[1] = curso2;
             arreglo[2] = curso3;
-
-            Curso[] arreglo2=        //esta es la forma mas optima de crear un arreglo y cargarlo
+            escuela.cursos=new Curso[]{
+                new Curso{nombre="303"},
+                new Curso{nombre="391"}
+            };
+            Curso[] arreglo2 =        //esta es la forma mas optima de crear un arreglo y cargarlo
             {
                 new Curso(){nombre="102"},
                 new Curso(){nombre="202"},
                 new Curso(){nombre="302"}
 
-            };
+             };
 
             curso1.turno = TurnoCurso.Tarde;
             Console.WriteLine(escuela);
@@ -46,6 +49,9 @@ namespace Etapa1
             ImprimirCursosForEach(arreglo);
             System.Console.WriteLine("=================\nARREGLO2");
             ImprimirCursosForEach(arreglo2);
+            System.Console.WriteLine("=================\nEscuela.cursos");
+            ImprimirCursosForEach(escuela.cursos);
+
         }    //aca termina el main
 
         public static void ImprimirCursos(Curso[] arregloEntrada)  //definimos las funciones fuera del main
