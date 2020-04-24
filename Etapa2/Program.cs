@@ -39,47 +39,55 @@ namespace Etapa1
                 new Curso(){nombre="302"}
 
              };
+            
 
             curso1.turno = TurnoCurso.Tarde;
             WriteLine(escuela);
             WriteLine("Nombre de  cuerso" + curso1.nombre + "\n" + " ,\n " + curso1.id + "," + curso1.turno);
             WriteLine($"Nombre de curso: {curso1.nombre}, ID: {curso1.id}\nTurno: {curso1.turno}");
             WriteLine($"Nombre de curso: {curso2.nombre}, ID: {curso2.id}\nTurno: {curso2.turno}");
-            ImprimirCursos(arreglo);
-            //escuela.cursos = null;
-            ImprimirCursosForEach(arreglo);
+            ImprimirCursos(escuela);
+            ImprimirCursosForEach(escuela);
             WriteLine("=================\nARREGLO2");
-            ImprimirCursosForEach(arreglo2);
-            WriteLine("=================\nEscuela.cursos");
-            ImprimirCursosForEach(escuela.cursos);
+            ImprimirCursosForEach(escuela);
+
+            ImprimirCursosForEach(escuela);
 
         }    //aca termina el main
         //FUNCIONES DEFINIDAS
 
-        public static void ImprimirCursos(Curso[] arregloEntrada)  //definimos las funciones fuera del main
+        public static void ImprimirCursos(Escuela escuelaEntrada)  //definimos las funciones fuera del main
         {
 
             int contador = 0;
             WriteLine("======================================\nCURSOS de la funcion ImprimirCursos");
-            while (contador < arregloEntrada.Length)
+            if (escuelaEntrada?.cursos != null) //ASI HACEMOS LA MISMA COMPROBACION QUE EN EL OTRO IMPRIMIR
             {
+                while (contador < escuelaEntrada.cursos.Length)
+                {
 
-                WriteLine($"Nombre: {arregloEntrada[contador].nombre}, Id {arregloEntrada[contador].id}, Turno {arregloEntrada[contador].turno}");
-                contador++;
+                    WriteLine($"Nombre: {escuelaEntrada.cursos[contador].nombre}, Id {escuelaEntrada.cursos[contador].id}, Turno {escuelaEntrada.cursos[contador].turno}");
+                    contador++;
+                }
+
             }
+            else
+            {
+                WriteLine("No hay cursos cargados");
 
+            }
         }
-        public static void ImprimirCursosForEach(Curso[] arregloEntrada)
+        public static void ImprimirCursosForEach(Escuela escuelaEntrada)   //solo paso la escuela y dentro entro a cursos
         {
             WriteLine("======================================\nCURSOS Funcion imprimirCursosForEach");
-            if (arregloEntrada == null)
+            if (escuelaEntrada == null || escuelaEntrada.cursos == null)
             {
-            WriteLine("No hay cursos en la escuela");
-            return;
+                WriteLine("No hay cursos en la escuela");
+                return;
             }
-             else
+            else
             {
-                foreach (var curso in arregloEntrada)       //con foreach entramos en cada curso por eso corremos menos riesgo de errores y es mas eficiente
+                foreach (var curso in escuelaEntrada.cursos)       //con foreach entramos en cada curso por eso corremos menos riesgo de errores y es mas eficiente
                 {
                     WriteLine($"Nombre: {curso.nombre}, Id {curso.id}, Turno {curso.turno}");
                 }
