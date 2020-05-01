@@ -39,21 +39,27 @@ namespace Etapa1
                 new Curso(){nombre="302"}
 
              };
-             var listaCursos = new List<Curso>()
+            var listaCursos = new List<Curso>()                 // creamos una variable de tipo collec generic
              {
                   new Curso{nombre="1001",turno=TurnoCurso.Noche},
                   new Curso{nombre="2001",turno=TurnoCurso.Noche},
-                  new Curso{nombre="3001",turno=TurnoCurso.Noche}  
+                  new Curso{nombre="3001",turno=TurnoCurso.Noche}
              };
-             var listaCursos2 = new List<Curso>()
+            escuela.colCursos = new List<Curso>()
              {
                   new Curso{nombre="4001",turno=TurnoCurso.Noche},
                   new Curso{nombre="5001",turno=TurnoCurso.Noche},
-                  new Curso{nombre="6001",turno=TurnoCurso.Noche}  
+                  new Curso{nombre="6001",turno=TurnoCurso.Noche}
              };
+          //escuela.colCursos = listaCursos2;
+          
+          if(escuela.colCursos!=null){
+            escuela.colCursos.Add(new Curso { nombre = "212" });
+           // escuela.colCursos.AddRange(listaCursos);   //asi podemos agregar una lista entera 
 
-            escuela.colCursos=listaCursos;
-            escuela.colCursos.AddRange(listaCursos2);
+
+            escuela.colCursos.AddRange(listaCursos);}
+
             /*curso1.turno = TurnoCurso.Tarde;
             WriteLine(escuela);
             WriteLine("Nombre de  cuerso" + curso1.nombre + "\n" + " ,\n " + curso1.id + "," + curso1.turno);
@@ -64,7 +70,7 @@ namespace Etapa1
             WriteLine("=================\nARREGLO2");  */
 
 
-            ImprimirCursosForEach(escuela);
+            //  ImprimirCursosForEach(escuela);
             ImprimirColeCursosForEach(escuela);
 
 
@@ -109,7 +115,7 @@ namespace Etapa1
             }
 
         }
-            public static void ImprimirColeCursosForEach(Escuela escuelaEntrada)   //solo paso la escuela y dentro entro a cursos
+        public static void ImprimirColeCursosForEach(Escuela escuelaEntrada)   //solo paso la escuela y dentro entro a cursos
         {
             WriteLine("======================================\nCURSOS COLECCION ");
             if (escuelaEntrada == null || escuelaEntrada.colCursos == null)
