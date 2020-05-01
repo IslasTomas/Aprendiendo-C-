@@ -1,7 +1,7 @@
 ﻿using System;
 using CorEscuela.Entidades;
 using static System.Console;  //con esto cada vez q tenemos que usar funciones Consol no necesitamos poner Console
-
+using System.Collections.Generic;
 namespace Etapa1
 {
     class Program
@@ -39,21 +39,36 @@ namespace Etapa1
                 new Curso(){nombre="302"}
 
              };
-            
+             var listaCursos = new List<Curso>()
+             {
+                  new Curso{nombre="1001",turno=TurnoCurso.Noche},
+                  new Curso{nombre="2001",turno=TurnoCurso.Noche},
+                  new Curso{nombre="3001",turno=TurnoCurso.Noche}  
+             };
+             var listaCursos2 = new List<Curso>()
+             {
+                  new Curso{nombre="4001",turno=TurnoCurso.Noche},
+                  new Curso{nombre="5001",turno=TurnoCurso.Noche},
+                  new Curso{nombre="6001",turno=TurnoCurso.Noche}  
+             };
 
-            curso1.turno = TurnoCurso.Tarde;
+            escuela.colCursos=listaCursos;
+            escuela.colCursos.AddRange(listaCursos2);
+            /*curso1.turno = TurnoCurso.Tarde;
             WriteLine(escuela);
             WriteLine("Nombre de  cuerso" + curso1.nombre + "\n" + " ,\n " + curso1.id + "," + curso1.turno);
             WriteLine($"Nombre de curso: {curso1.nombre}, ID: {curso1.id}\nTurno: {curso1.turno}");
             WriteLine($"Nombre de curso: {curso2.nombre}, ID: {curso2.id}\nTurno: {curso2.turno}");
             ImprimirCursos(escuela);
             ImprimirCursosForEach(escuela);
-            WriteLine("=================\nARREGLO2");
-            ImprimirCursosForEach(escuela);
+            WriteLine("=================\nARREGLO2");  */
+
 
             ImprimirCursosForEach(escuela);
+            ImprimirColeCursosForEach(escuela);
 
-        }    //aca termina el main
+
+        }                                                 //ACA TERMINA EL MAIN
         //FUNCIONES DEFINIDAS
 
         public static void ImprimirCursos(Escuela escuelaEntrada)  //definimos las funciones fuera del main
@@ -88,6 +103,23 @@ namespace Etapa1
             else
             {
                 foreach (var curso in escuelaEntrada.cursos)       //con foreach entramos en cada curso por eso corremos menos riesgo de errores y es mas eficiente
+                {
+                    WriteLine($"Nombre: {curso.nombre}, Id {curso.id}, Turno {curso.turno}");
+                }
+            }
+
+        }
+            public static void ImprimirColeCursosForEach(Escuela escuelaEntrada)   //solo paso la escuela y dentro entro a cursos
+        {
+            WriteLine("======================================\nCURSOS COLECCION ");
+            if (escuelaEntrada == null || escuelaEntrada.colCursos == null)
+            {
+                WriteLine("No hay cursos en la escuela");
+                return;
+            }
+            else
+            {
+                foreach (var curso in escuelaEntrada.colCursos)       //con foreach entramos en cada curso por eso corremos menos riesgo de errores y es mas eficiente
                 {
                     WriteLine($"Nombre: {curso.nombre}, Id {curso.id}, Turno {curso.turno}");
                 }
