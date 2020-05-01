@@ -12,11 +12,11 @@ namespace Etapa1
             var escuela = new Escuela("Saaan cayetano", 1960,
             TiposEscuela.PreEscuela, paisE: "Argentaaina", ciudadE: "La Paalata");   //con cntrl +.  agrega Escuela para tener sus metodos y mas
             /*
-           !! escuela.Nombre="SanCa";
-              escuela.Ciudad="la plata";!!!
-              Como la adorsignacion del nombre y el año la hicimos como parametro de entrada al crear 
-              el objeto esto ya no lo usamos y pasamos el nombre y año como parametro del metodo
-              */
+        !! escuela.Nombre="SanCa";
+           escuela.Ciudad="la plata";!!!
+           Como la adorsignacion del nombre y el año la hicimos como parametro de entrada al crear 
+           el objeto esto ya no lo usamos y pasamos el nombre y año como parametro del metodo
+           */
 
             var curso1 = new Curso();
             curso1.nombre = "101";
@@ -51,15 +51,14 @@ namespace Etapa1
                   new Curso{nombre="5001",turno=TurnoCurso.Noche},
                   new Curso{nombre="6001",turno=TurnoCurso.Noche}
              };
-          //escuela.colCursos = listaCursos2;
-          
-          if(escuela.colCursos!=null){
-            escuela.colCursos.Add(new Curso { nombre = "212" });
-           // escuela.colCursos.AddRange(listaCursos);   //asi podemos agregar una lista entera 
 
 
-            escuela.colCursos.AddRange(listaCursos);}
+            if (escuela.colCursos != null)
+            {
+                escuela.colCursos.Add(new Curso { nombre = "212" });
+                // escuela.colCursos.AddRange(listaCursos);   //asi podemos agregar una lista entera 
 
+            }
             /*curso1.turno = TurnoCurso.Tarde;
             WriteLine(escuela);
             WriteLine("Nombre de  cuerso" + curso1.nombre + "\n" + " ,\n " + curso1.id + "," + curso1.turno);
@@ -70,11 +69,24 @@ namespace Etapa1
             WriteLine("=================\nARREGLO2");  */
 
 
-            //  ImprimirCursosForEach(escuela);
+            escuela.colCursos.Add(new Curso { nombre = "VACACIONES", turno = TurnoCurso.Noche });
+            ImprimirColeCursosForEach(escuela);
+            escuela.colCursos.RemoveAll(Predicate);//PRedicate es una funcion de tipo bool que cuando devuelva bool REMOVera "puede tener cualquie nombre"
+
             ImprimirColeCursosForEach(escuela);
 
 
-        }                                                 //ACA TERMINA EL MAIN
+        }                                  //ACA TERMINA EL MAIN
+
+        private static bool Predicate(Curso obj)//esta funcuin va a entrar en cada objero de la funcion y devolvera true si cumple
+        {
+            return obj.nombre == "VACACIONES";
+        }
+
+
+
+
+
         //FUNCIONES DEFINIDAS
 
         public static void ImprimirCursos(Escuela escuelaEntrada)  //definimos las funciones fuera del main
