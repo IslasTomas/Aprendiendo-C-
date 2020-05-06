@@ -70,14 +70,39 @@ namespace Etapa1
 
 
             escuela.colCursos.Add(new Curso { nombre = "VACACIONES", turno = TurnoCurso.Noche });
-            ImprimirColeCursosForEach(escuela);
+           // ImprimirColeCursosForEach(escuela);
             escuela.colCursos.RemoveAll(Predicate);//PRedicate es una funcion de tipo bool que cuando devuelva bool REMOVera "puede tener cualquie nombre"
 
+            //ImprimirColeCursosForEach(escuela);
+            WriteLine("=========================");
+            //escuela.colCursos.RemoveAll(Predi);
             ImprimirColeCursosForEach(escuela);
+
+
+             ///
+             ///
+             ///"delegate"   es la palabra clave que nos permite hacerlo
+            escuela.colCursos.RemoveAll(delegate (Curso cur)   
+            {
+                return cur.nombre == "4001" && cur.turno== TurnoCurso.Noche;
+            });
+            ImprimirColeCursosForEach(escuela);
+
+            ///
+            /// UNA FORMA MAS REDUCIDA DE ESCRIBIR EL DELEGATE
+            ///
+            escuela.colCursos.RemoveAll ((cur) => cur.nombre =="202" || cur.turno == TurnoCurso.Mañana);
+             ImprimirColeCursosForEach(escuela);
+
+
 
 
         }                                  //ACA TERMINA EL MAIN
 
+        private static bool Predi(Curso curObj)
+        {
+            return curObj.turno == TurnoCurso.Noche;
+        }
         private static bool Predicate(Curso obj)//esta funcuin va a entrar en cada objero de la funcion y devolvera true si cumple
         {
             return obj.nombre == "VACACIONES";
