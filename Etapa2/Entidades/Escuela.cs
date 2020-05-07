@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace CorEscuela.Entidades
 {
-    class Escuela
+    public class Escuela
     {
         string nombre;                  //para encapsularlo agregamos propiedades 
         public string Nombre
