@@ -1,6 +1,8 @@
+using System.Collections.Generic;
+
 namespace CorEscuela.Entidades
 {
-    class Escuela
+    public class Escuela
     {
         string nombre;                  //para encapsularlo agregamos propiedades 
         public string Nombre
@@ -14,6 +16,7 @@ namespace CorEscuela.Entidades
                                                //Y UTILIZA LAS FUNCIONES GET Y SET Q YA DEFINIMOS  
         public string Pais { get; set; }
         public string Ciudad { get; set; }
+        public List<Curso> colCursos { get; set; }
         public Curso[] cursos { get; set; }
 
         /* public Escuela(string nombreEntrada){    //aca le que hacemos es que al crear el objeto se le tenga 

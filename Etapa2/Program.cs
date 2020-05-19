@@ -1,13 +1,14 @@
 ﻿using System;
 using CorEscuela.Entidades;
 using static System.Console;  //con esto cada vez q tenemos que usar funciones Consol no necesitamos poner Console
-
-namespace Etapa1
+using System.Collections.Generic;
+namespace CorEscuela
 {
     class Program
     {
         static void Main(string[] args)
         {
+<<<<<<< HEAD
             console.writeline("Esto lo hice desde Github");
             var escuela = new Escuela("Saaan cayetano", 1960,
             TiposEscuela.PreEscuela, paisE: "Argentaaina", ciudadE: "La Paalata");   //con cntrl +.  agrega Escuela para tener sus metodos y mas
@@ -57,43 +58,22 @@ namespace Etapa1
         //FUNCIONES DEFINIDAS
 
         public static void ImprimirCursos(Escuela escuelaEntrada)  //definimos las funciones fuera del main
+=======
+            var engine = new EscuelaEngine();
+            engine.Inicializar();
+            ImprimirCursos(engine.escuela);
+        }                                  //ACA TERMINA EL MAIN
+
+        private static void ImprimirCursos(Escuela escuela)
+>>>>>>> Cabecera
         {
-
-            int contador = 0;
-            WriteLine("======================================\nCURSOS de la funcion ImprimirCursos");
-            if (escuelaEntrada?.cursos != null) //ASI HACEMOS LA MISMA COMPROBACION QUE EN EL OTRO IMPRIMIR
+            WriteLine($"CURSOS DE LA ESCUELA {escuela.Nombre}");
+            WriteLine("=====================================");
+            foreach (var cursos in escuela.colCursos)
             {
-                while (contador < escuelaEntrada.cursos.Length)
-                {
-
-                    WriteLine($"Nombre: {escuelaEntrada.cursos[contador].nombre}, Id {escuelaEntrada.cursos[contador].id}, Turno {escuelaEntrada.cursos[contador].turno}");
-                    contador++;
-                }
-
-            }
-            else
-            {
-                WriteLine("No hay cursos cargados");
-
+                WriteLine($"Curso: {cursos.nombre}  ID: {cursos.id}  Turno: {cursos.turno}");
             }
         }
-        public static void ImprimirCursosForEach(Escuela escuelaEntrada)   //solo paso la escuela y dentro entro a cursos
-        {
-            WriteLine("======================================\nCURSOS Funcion imprimirCursosForEach");
-            if (escuelaEntrada == null || escuelaEntrada.cursos == null)
-            {
-                WriteLine("No hay cursos en la escuela");
-                return;
-            }
-            else
-            {
-                foreach (var curso in escuelaEntrada.cursos)       //con foreach entramos en cada curso por eso corremos menos riesgo de errores y es mas eficiente
-                {
-                    WriteLine($"Nombre: {curso.nombre}, Id {curso.id}, Turno {curso.turno}");
-                }
-            }
-
-        }
-
     }
 }
+
