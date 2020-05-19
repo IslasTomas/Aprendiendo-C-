@@ -8,7 +8,7 @@ namespace Etapa1
     {
         static void Main(string[] args)
         {
-
+            console.writeline("Esto lo hice desde Github");
             var escuela = new Escuela("Saaan cayetano", 1960,
             TiposEscuela.PreEscuela, paisE: "Argentaaina", ciudadE: "La Paalata");   //con cntrl +.  agrega Escuela para tener sus metodos y mas
             /*
