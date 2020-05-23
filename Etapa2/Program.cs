@@ -1,4 +1,5 @@
 ﻿using System;
+using CorEscuela;
 using CorEscuela.Entidades;
 using static System.Console;  //con esto cada vez q tenemos que usar funciones Consol no necesitamos poner Console
 using System.Collections.Generic;
@@ -10,18 +11,26 @@ namespace CorEscuela
         {
             var engine = new EscuelaEngine();
             engine.Inicializar();
-            ImprimirCursos(engine.escuela);
-        }                                  //ACA TERMINA EL MAIN
+            // ImprimirCursos(engine.escuela);
+            WriteLine("hola");
+            ImprimirCursos(engine);
 
-        private static void ImprimirCursos(Escuela escuela)
+        }
+
+        private static void ImprimirCursos(EscuelaEngine engine)
         {
-            WriteLine($"CURSOS DE LA ESCUELA {escuela.Nombre}");
-            WriteLine("=====================================");
-            foreach (var cursos in escuela.colCursos)
+            WriteLine("======");
+            WriteLine("CURSOS");
+            WriteLine("======");
+            foreach (var cursos in engine.escuela.colCursos)
             {
-                WriteLine($"Curso: {cursos.nombre}  ID: {cursos.id}  Turno: {cursos.turno}");
+                WriteLine($"Curso: {cursos.nombre} ID: {cursos.id} Turno: {cursos.turno}");
             }
         }
-    }
+    }                                  //ACA TERMINA EL MAIN
+
+
+
 }
+
 
