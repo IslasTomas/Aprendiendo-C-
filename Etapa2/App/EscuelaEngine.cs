@@ -22,22 +22,34 @@ namespace CorEscuela
             CargarCursos();
             CargarMaterias();
             CargarAlumnos();
+            CargarEvaluaciones();
 
         }
-        private void CargarAlumnos()
+
+        private void CargarEvaluaciones()
         {
+            
+        }
+
+        private List<Alumno> GenerarAlumnosAlAzar(int cantidad)
+        { 
             string[] nombres1 = {"Tomas","Joaquin","Mateo","Umma","Renata","Johanna"};
-            string[] apellidos = {"Islas","Gualtieri","Rodriguez","Casarini"};
+            string[] apellidos = {"Islas","Gualtieri","Rodriguez","Casarini","Perez"};
             string[] nombres2 = {"Rolando","Graciela","Blanca","Gisele"};
             var listadoAlumnos =  from n1 in nombres1
                                   from n2 in nombres2
                                   from a1 in apellidos
                                   select new Alumno(){Nombre = $"{n1} {n2} {a1}"};
+            return (listadoAlumnos.OrderBy((al) => al.UniqueId).Take(cantidad).ToList());
+        }
+          private void CargarAlumnos(){
+            var rnd= new Random();
+            
             foreach (var curso in Escuela.Cursos)
             {
-              curso.Alumnos.AddRange(listadoAlumnos);  
+              curso.Alumnos.AddRange(GenerarAlumnosAlAzar(rnd.Next(5,20)));  
             }
-        }
+          }
 
         private void CargarMaterias()
         {
