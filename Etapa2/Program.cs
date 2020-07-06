@@ -12,21 +12,12 @@ namespace CorEscuela
             var engine = new EscuelaEngine();
             engine.Inicializar();
             // ImprimirCursos(engine.escuela);
-            WriteLine("hola");
-            ImprimirCursos(engine);
+            WriteLine("Hola");
+            engine.ImprimirCursos();
 
         }
 
-        private static void ImprimirCursos(EscuelaEngine engine)
-        {
-            WriteLine("======");
-            WriteLine("CURSOS");
-            WriteLine("======");
-            foreach (var cursos in engine.escuela.colCursos)
-            {
-                WriteLine($"Curso: {cursos.nombre} ID: {cursos.id} Turno: {cursos.turno}");
-            }
-        }
+       
     }                                  //ACA TERMINA EL MAIN
 
 
