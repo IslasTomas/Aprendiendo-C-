@@ -13,7 +13,7 @@ namespace CorEscuela
             engine.Inicializar();
             // ImprimirCursos(engine.escuela);
             WriteLine("Hola");
-            engine.ImprimirCursos();
+            engine.ImprimirCursosYMaterias();
 
         }
 

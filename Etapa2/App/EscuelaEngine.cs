@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using CorEscuela.Entidades;
 using static System.Console;
 
@@ -18,7 +20,37 @@ namespace CorEscuela
             Escuela = new Escuela("Saaan cayetano", 1960,
             TiposEscuela.PreEscuela, paisE: "Argentaaina", ciudadE: "La Plata");
             CargarCursos();
+            CargarMaterias();
+            CargarAlumnos();
 
+        }
+        private void CargarAlumnos()
+        {
+            string[] nombres1 = {"Tomas","Joaquin","Mateo","Umma","Renata","Johanna"};
+            string[] apellidos = {"Islas","Gualtieri","Rodriguez","Casarini"};
+            string[] nombres2 = {"Rolando","Graciela","Blanca","Gisele"};
+            var listadoAlumnos =  from n1 in nombres1
+                                  from n2 in nombres2
+                                  from a1 in apellidos
+                                  select new Alumno(){Nombre = $"{n1} {n2} {a1}"};
+            foreach (var curso in Escuela.Cursos)
+            {
+              curso.Alumnos.AddRange(listadoAlumnos);  
+            }
+        }
+
+        private void CargarMaterias()
+        {
+           foreach (var curso in Escuela.Cursos)
+           {
+               curso.Materias = new List<Materia>()
+               {
+                   new Materia{Nombre="Matematicas"},
+                   new Materia{Nombre="Lengua"},
+                   new Materia{Nombre="Ingles"},
+                   new Materia{Nombre="Musica"}
+               };
+           }
         }
 
         private void CargarCursos()
@@ -32,7 +64,7 @@ namespace CorEscuela
             };
         }
 
-        public void ImprimirCursos()
+        public void ImprimirCursosYMaterias()
         {
             WriteLine("======");
             WriteLine("CURSOS");
@@ -40,6 +72,10 @@ namespace CorEscuela
             foreach (var cursos in Escuela.Cursos)
             {
                 WriteLine($"Curso: {cursos.Nombre} ID: {cursos.Id} Turno: {cursos.turno}");
+                foreach (var materia in cursos.Materias)
+                {
+                    WriteLine($"Materia: \"{materia.Nombre}\" ID: \"{materia.UniqueId}\"");
+                }
             }
         }
 
