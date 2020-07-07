@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace CorEscuela.Entidades
 {
@@ -9,6 +10,7 @@ namespace CorEscuela.Entidades
         public Alumno(){
             UniqueId = Guid.NewGuid().ToString();
         } 
-        
+        public List<Evaluacion> Evaluaciones { get; set; } = new List<Evaluacion>();
+
     }
 }
