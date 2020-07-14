@@ -2,10 +2,8 @@ using System;
 
 namespace CorEscuela.Entidades
 {
-    public class Evaluacion
+    public class Evaluacion : ObjetoEscuelaBase
     {
-        public string Nombre { get; set;} 
-        public string UniqueId{get; private set;} = Guid.NewGuid().ToString();
        public Alumno Alumno {get; set;}
        public Materia Materia { get; set; }
        public float Nota { get; set; }

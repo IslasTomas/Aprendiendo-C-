@@ -2,14 +2,9 @@ using System.Collections.Generic;
 
 namespace CorEscuela.Entidades
 {
-    public class Escuela
+    public class Escuela: ObjetoEscuelaBase
     {
-        string nombre;                  //para encapsularlo agregamos propiedades 
-        public string Nombre
-        {                                    //prop  para retornar nombre y para modifcarlo
-            get { return nombre; }               // funcion para devolver get
-            set { nombre = value.ToUpper(); }     // funcion para asignar
-        }                                          //.ToUpper()  esta funcion lo combiertte en mayuscula                
+                                                //.ToUpper()  esta funcion lo combiertte en mayuscula                
                                                    //las propiedades Son de los atributos q tiene atras
         public int AñoDeCreacion { get; set; } //esto crea otro atributo con q no sabemos el nombre pero n
                                                //nos vamos a referir a el por el nombre de la propiedad

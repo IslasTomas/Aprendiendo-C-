@@ -107,7 +107,7 @@ namespace CorEscuela
             WriteLine("======");
             foreach (var cursos in Escuela.Cursos)
             {
-                WriteLine($"Curso: {cursos.Nombre} ID: {cursos.Id} Turno: {cursos.turno}");
+                WriteLine($"Curso: {cursos.Nombre} ID: {cursos.UniqueId} Turno: {cursos.turno}");
                 foreach (var materia in cursos.Materias)
                 {
                     WriteLine($"Materia: \"{materia.Nombre}\" ID: \"{materia.UniqueId}\"");
