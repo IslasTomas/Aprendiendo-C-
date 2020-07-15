@@ -8,5 +8,9 @@ namespace CorEscuela.Entidades
                                                 //lo asignamos con el constructur 
    
         public string Nombre { get; set;}
+        public override string ToString()
+        {
+            return $"{Nombre},{UniqueId}";
+        } 
     }
 }

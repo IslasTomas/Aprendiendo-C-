@@ -1,0 +1,4 @@
+En todo objeto que tenga una herencia puede convertirse(o tomarse)
+ en el tipo del objeto padre "pero solo va a tener los atributos definidos
+en el padre" ej:  un objeto Alumno que hereda de Persona, lo podemos ver como
+Persona   pasa consultarlo:  var testeo= alumno1 as Persona.
