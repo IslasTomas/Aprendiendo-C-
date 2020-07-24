@@ -23,9 +23,26 @@ namespace CorEscuela
             CargarMaterias();
             CargarAlumnos();
             CargarEvaluaciones();
+          //  var listadoObjetos = listarObjetosEscuela();
 
         }
-
+        /// Lista todos los objetos creados que heredaron ObjetoEscuelaBase
+        public List<ObjetoEscuelaBase> listarObjetosEscuela()
+        {
+            List<ObjetoEscuelaBase> listaObjetos = new List<ObjetoEscuelaBase>();
+            listaObjetos.Add(Escuela);
+            foreach (var cursos in Escuela.Cursos)
+            {
+                listaObjetos.Add(cursos);
+                listaObjetos.AddRange(cursos.Materias);
+                foreach (var alumnos in cursos.Alumnos)
+                {
+                    listaObjetos.Add(alumnos);
+                    listaObjetos.AddRange(alumnos.Evaluaciones);
+                }
+            }
+            return listaObjetos;
+        }
         private void CargarEvaluaciones()
         {
             foreach (var curso in Escuela.Cursos)
@@ -37,14 +54,14 @@ namespace CorEscuela
 
                         for (int i = 0; i < 5; i++)
                         {
-                            var rnd= new Random();   //numeros ramdom para la nota de las evaluaciones
-                            var ev= new Evaluacion
-                                {
-                                    Materia= materia,
-                                    Nombre= $"{materia.Nombre} Ev#{i+1}",
-                                    Nota= (float) (5 * rnd.NextDouble()), //agregando float transformamos el numero en flotante
-                                    Alumno= alumno
-                                };
+                            var rnd = new Random();   //numeros ramdom para la nota de las evaluaciones
+                            var ev = new Evaluacion
+                            {
+                                Materia = materia,
+                                Nombre = $"{materia.Nombre} Ev#{i + 1}",
+                                Nota = (float)(5 * rnd.NextDouble()), //agregando float transformamos el numero en flotante
+                                Alumno = alumno
+                            };
                             alumno.Evaluaciones.Add(ev);          //agregamos el examen a alumno                                     //rnd.NextDouble genera numero del 0.0 al 1.0 
                         }
                     }
@@ -56,7 +73,7 @@ namespace CorEscuela
 
         private List<Alumno> GenerarAlumnosAlAzar(int cantidad)
         {
-            string[] nombres1 = { "Tomas", "Joaquin", "Mateo", "Umma", "Renata", "Johanna" };
+            string[] nombres1 = { "Tomas", "Joaquin", "Mateo", "Umma", "Renata", "Johanna","pepito" };
             string[] apellidos = { "Islas", "Gualtieri", "Rodriguez", "Casarini", "Perez" };
             string[] nombres2 = { "Rolando", "Graciela", "Blanca", "Gisele" };
             var listadoAlumnos = from n1 in nombres1

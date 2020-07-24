@@ -3,6 +3,7 @@ using CorEscuela;
 using CorEscuela.Entidades;
 using static System.Console;  //con esto cada vez q tenemos que usar funciones Consol no necesitamos poner Console
 using System.Collections.Generic;
+using System.Linq;
 namespace CorEscuela
 {
     class Program
@@ -15,6 +16,13 @@ namespace CorEscuela
             WriteLine("Hola");
             engine.ImprimirCursosYMaterias();
             engine.Escuela.LimpiarLugar();
+            var listaObjetosEscuela = engine.listarObjetosEscuela();
+
+            //filtramos los objetos por medio de la interfaz que implementan
+            //usamos system.LINQ para filtrar 
+            var listarILugar = from obj in listaObjetosEscuela
+                                where obj is ILugar
+                                select (ILugar) obj; 
 
 
         }
