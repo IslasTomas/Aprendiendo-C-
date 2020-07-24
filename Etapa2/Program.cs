@@ -14,6 +14,8 @@ namespace CorEscuela
             // ImprimirCursos(engine.escuela);
             WriteLine("Hola");
             engine.ImprimirCursosYMaterias();
+            engine.Escuela.LimpiarLugar();
+
 
         }
 
