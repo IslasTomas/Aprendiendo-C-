@@ -16,18 +16,25 @@ namespace CorEscuela
             WriteLine("Hola");
             engine.ImprimirCursosYMaterias();
             engine.Escuela.LimpiarLugar();
-            var listaObjetosEscuela = engine.listarObjetosEscuela();
-
+            int dummy = 0;
+            ///la usamos para reemplazar algun parametro de salida q no nos interese
+            var listaObjetosEscuela = engine.listarObjetosEscuela(
+            out int conteoAlumnos,
+            out int conteoMaterias,
+            out dummy, ///con dummy descartamos esa salida
+            out dummy
+            );
+            ///Los parametros de salida podemos verlos en el debug 
             //filtramos los objetos por medio de la interfaz que implementan
             //usamos system.LINQ para filtrar 
             var listarILugar = from obj in listaObjetosEscuela
-                                where obj is ILugar
-                                select (ILugar) obj; 
+                               where obj is Evaluacion
+                               select (Evaluacion)obj;
 
 
         }
 
-       
+
     }                                  //ACA TERMINA EL MAIN
 
 

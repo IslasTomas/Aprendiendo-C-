@@ -23,22 +23,39 @@ namespace CorEscuela
             CargarMaterias();
             CargarAlumnos();
             CargarEvaluaciones();
-          //  var listadoObjetos = listarObjetosEscuela();
+            //  var listadoObjetos = listarObjetosEscuela();
 
         }
         /// Lista todos los objetos creados que heredaron ObjetoEscuelaBase
-        public List<ObjetoEscuelaBase> listarObjetosEscuela()
+        public List<ObjetoEscuelaBase> listarObjetosEscuela(
+            out int conteoAlumnos,
+            out int conteoMaterias,
+            out int conteoCursos,
+            out int conteoEvaluaciones,
+            bool traeCursos = true,
+            bool traeAlumnos = true,
+            bool traeMaterias = true,
+            bool traeEvaluaciones = true)
         {
+            conteoAlumnos = conteoMaterias = conteoCursos = conteoEvaluaciones = 0;
             List<ObjetoEscuelaBase> listaObjetos = new List<ObjetoEscuelaBase>();
             listaObjetos.Add(Escuela);
+            conteoCursos= Escuela.Cursos.Count;
             foreach (var cursos in Escuela.Cursos)
             {
-                listaObjetos.Add(cursos);
-                listaObjetos.AddRange(cursos.Materias);
+                conteoMaterias = cursos.Materias.Count;
+                conteoAlumnos = cursos.Alumnos.Count;
+                if (traeCursos)
+                { listaObjetos.Add(cursos); }
+                if (traeMaterias)
+                { listaObjetos.AddRange(cursos.Materias); }
                 foreach (var alumnos in cursos.Alumnos)
                 {
-                    listaObjetos.Add(alumnos);
-                    listaObjetos.AddRange(alumnos.Evaluaciones);
+                    conteoEvaluaciones += alumnos.Evaluaciones.Count;
+                    if (traeAlumnos)
+                    { listaObjetos.Add(alumnos); }
+                    if (traeEvaluaciones)
+                    { listaObjetos.AddRange(alumnos.Evaluaciones); }
                 }
             }
             return listaObjetos;
@@ -73,7 +90,7 @@ namespace CorEscuela
 
         private List<Alumno> GenerarAlumnosAlAzar(int cantidad)
         {
-            string[] nombres1 = { "Tomas", "Joaquin", "Mateo", "Umma", "Renata", "Johanna","pepito" };
+            string[] nombres1 = { "Tomas", "Joaquin", "Mateo", "Umma", "Renata", "Johanna", "pepito" };
             string[] apellidos = { "Islas", "Gualtieri", "Rodriguez", "Casarini", "Perez" };
             string[] nombres2 = { "Rolando", "Graciela", "Blanca", "Gisele" };
             var listadoAlumnos = from n1 in nombres1
