@@ -15,6 +15,7 @@ namespace CorEscuela
 
 
         }
+
         public void Inicializar()
         {
             Escuela = new Escuela("Saaan cayetano", 1960,
@@ -59,6 +60,52 @@ namespace CorEscuela
                 }
             }
             return listaObjetos;
+        }
+
+        public List<ObjetoEscuelaBase> listarObjetosEscuela(
+            bool traeCursos = true,
+            bool traeAlumnos = true,
+            bool traeMaterias = true,
+            bool traeEvaluaciones = true
+        )
+        {
+            return listarObjetosEscuela(out int dummy, out dummy, out dummy, out dummy); 
+        }
+       
+       
+        public List<ObjetoEscuelaBase> listarObjetosEscuela(
+            out int conteoAlumnos,
+            bool traeCursos = true,
+            bool traeAlumnos = true,
+            bool traeMaterias = true,
+            bool traeEvaluaciones = true
+        )
+        {
+            return listarObjetosEscuela(out conteoAlumnos, out int dummy, out dummy, out dummy);
+        }
+        
+        public List<ObjetoEscuelaBase> listarObjetosEscuela(
+            out int conteoAlumnos,
+            out int conteoMaterias,
+            bool traeCursos = true,
+            bool traeAlumnos = true,
+            bool traeMaterias = true,
+            bool traeEvaluaciones = true
+        )
+        {
+            return listarObjetosEscuela(out conteoAlumnos, out conteoMaterias, out int dummy, out dummy);
+        }
+        public List<ObjetoEscuelaBase> listarObjetosEscuela(
+            out int conteoAlumnos,
+            out int conteoMaterias,
+            out int conteoCursos,
+            bool traeCursos = true,
+            bool traeAlumnos = true,
+            bool traeMaterias = true,
+            bool traeEvaluaciones = true
+        )
+        {
+            return listarObjetosEscuela(out conteoAlumnos, out conteoMaterias, out conteoCursos, out int dummy);
         }
         private void CargarEvaluaciones()
         {

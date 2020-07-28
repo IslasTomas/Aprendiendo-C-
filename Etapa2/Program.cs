@@ -31,7 +31,6 @@ namespace CorEscuela
                                where obj is Evaluacion
                                select (Evaluacion)obj;
 
-
         }
 
 
