@@ -28,7 +28,7 @@ namespace CorEscuela
 
         }
         /// Lista todos los objetos creados que heredaron ObjetoEscuelaBase
-        public List<ObjetoEscuelaBase> listarObjetosEscuela(
+        public IReadOnlyList<ObjetoEscuelaBase> listarObjetosEscuela(
             out int conteoAlumnos,
             out int conteoMaterias,
             out int conteoCursos,
@@ -59,10 +59,10 @@ namespace CorEscuela
                     { listaObjetos.AddRange(alumnos.Evaluaciones); }
                 }
             }
-            return listaObjetos;
+            return listaObjetos.AsReadOnly();
         }
 
-        public List<ObjetoEscuelaBase> listarObjetosEscuela(
+        public IReadOnlyList<ObjetoEscuelaBase> listarObjetosEscuela(
             bool traeCursos = true,
             bool traeAlumnos = true,
             bool traeMaterias = true,
@@ -73,7 +73,7 @@ namespace CorEscuela
         }
        
        
-        public List<ObjetoEscuelaBase> listarObjetosEscuela(
+        public IReadOnlyList<ObjetoEscuelaBase> listarObjetosEscuela(
             out int conteoAlumnos,
             bool traeCursos = true,
             bool traeAlumnos = true,
@@ -84,7 +84,7 @@ namespace CorEscuela
             return listarObjetosEscuela(out conteoAlumnos, out int dummy, out dummy, out dummy);
         }
         
-        public List<ObjetoEscuelaBase> listarObjetosEscuela(
+        public IReadOnlyList<ObjetoEscuelaBase> listarObjetosEscuela(
             out int conteoAlumnos,
             out int conteoMaterias,
             bool traeCursos = true,
@@ -95,7 +95,7 @@ namespace CorEscuela
         {
             return listarObjetosEscuela(out conteoAlumnos, out conteoMaterias, out int dummy, out dummy);
         }
-        public List<ObjetoEscuelaBase> listarObjetosEscuela(
+        public IReadOnlyList<ObjetoEscuelaBase> listarObjetosEscuela(
             out int conteoAlumnos,
             out int conteoMaterias,
             out int conteoCursos,

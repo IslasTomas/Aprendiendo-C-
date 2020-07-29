@@ -30,7 +30,6 @@ namespace CorEscuela
             var listarILugar = from obj in listaObjetosEscuela
                                where obj is Evaluacion
                                select (Evaluacion)obj;
-
         }
     }
 }
