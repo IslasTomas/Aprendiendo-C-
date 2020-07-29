@@ -32,12 +32,6 @@ namespace CorEscuela
                                select (Evaluacion)obj;
 
         }
-
-
-    }                                  //ACA TERMINA EL MAIN
-
-
-
+    }
 }
-
-
+           
