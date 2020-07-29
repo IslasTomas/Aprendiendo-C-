@@ -1,15 +1,18 @@
 using System;
+using System.Collections.Generic;
+
 namespace CorEscuela.Entidades
 {
-    public class Curso
+    public class Curso: ObjetoEscuelaBase, ILugar
     {
-        public string nombre {get;set;}
-        public string id {get; private set;}    // lo definimos privado por lo que solo se puede asignar desde la clase
-                                                //lo asignamos con el constructur 
-        public TurnoCurso turno {get;set;}
-        public Curso()                       //constructor donde asignamos el id automatico
+         public TurnoCurso turno {get;set;}
+        public List<Alumno> Alumnos { get; set; } = new List<Alumno>();
+        public List<Materia> Materias { get; set; } = new List<Materia>();
+        public string Direccion { get; set; }
+
+        public void LimpiarLugar()
         {
-            id = Guid.NewGuid().ToString();  
+            Console.WriteLine($"Curso {Nombre} Limpiado");
         }
     }
 }       
