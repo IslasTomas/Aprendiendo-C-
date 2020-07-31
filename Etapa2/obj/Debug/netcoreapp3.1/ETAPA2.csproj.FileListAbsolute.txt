@@ -1,0 +1,13 @@
+C:\Users\tomas\Documents\PROYECTOS DE CURSOS\C#\Etapa2\bin\Debug\netcoreapp3.1\ETAPA2.exe
+C:\Users\tomas\Documents\PROYECTOS DE CURSOS\C#\Etapa2\bin\Debug\netcoreapp3.1\ETAPA2.deps.json
+C:\Users\tomas\Documents\PROYECTOS DE CURSOS\C#\Etapa2\bin\Debug\netcoreapp3.1\ETAPA2.runtimeconfig.json
+C:\Users\tomas\Documents\PROYECTOS DE CURSOS\C#\Etapa2\bin\Debug\netcoreapp3.1\ETAPA2.runtimeconfig.dev.json
+C:\Users\tomas\Documents\PROYECTOS DE CURSOS\C#\Etapa2\bin\Debug\netcoreapp3.1\ETAPA2.dll
+C:\Users\tomas\Documents\PROYECTOS DE CURSOS\C#\Etapa2\bin\Debug\netcoreapp3.1\ETAPA2.pdb
+C:\Users\tomas\Documents\PROYECTOS DE CURSOS\C#\Etapa2\obj\Debug\netcoreapp3.1\ETAPA2.csprojAssemblyReference.cache
+C:\Users\tomas\Documents\PROYECTOS DE CURSOS\C#\Etapa2\obj\Debug\netcoreapp3.1\ETAPA2.AssemblyInfoInputs.cache
+C:\Users\tomas\Documents\PROYECTOS DE CURSOS\C#\Etapa2\obj\Debug\netcoreapp3.1\ETAPA2.AssemblyInfo.cs
+C:\Users\tomas\Documents\PROYECTOS DE CURSOS\C#\Etapa2\obj\Debug\netcoreapp3.1\ETAPA2.csproj.CoreCompileInputs.cache
+C:\Users\tomas\Documents\PROYECTOS DE CURSOS\C#\Etapa2\obj\Debug\netcoreapp3.1\ETAPA2.dll
+C:\Users\tomas\Documents\PROYECTOS DE CURSOS\C#\Etapa2\obj\Debug\netcoreapp3.1\ETAPA2.pdb
+C:\Users\tomas\Documents\PROYECTOS DE CURSOS\C#\Etapa2\obj\Debug\netcoreapp3.1\ETAPA2.genruntimeconfig.cache

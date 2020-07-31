@@ -14,9 +14,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\tomas\\Documents\\PROYECTOS DE CURSOS\\C#\\Etapa2\\Etapa1c#.csproj",
-      "projectName": "Etapa1c#",
-      "projectPath": "C:\\Users\\tomas\\Documents\\PROYECTOS DE CURSOS\\C#\\Etapa2\\Etapa1c#.csproj",
+      "projectUniqueName": "C:\\Users\\tomas\\Documents\\PROYECTOS DE CURSOS\\C#\\Etapa2\\ETAPA2.csproj",
+      "projectName": "ETAPA2",
+      "projectPath": "C:\\Users\\tomas\\Documents\\PROYECTOS DE CURSOS\\C#\\Etapa2\\ETAPA2.csproj",
       "packagesPath": "C:\\Users\\tomas\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\tomas\\Documents\\PROYECTOS DE CURSOS\\C#\\Etapa2\\obj\\",
       "projectStyle": "PackageReference",
