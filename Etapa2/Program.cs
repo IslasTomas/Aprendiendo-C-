@@ -14,21 +14,21 @@ namespace CorEscuela
             engine.Inicializar();
             // ImprimirCursos(engine.escuela);
             WriteLine("Hola");
-            
-            
-            var dic = new Dictionary<int,string>();
-            dic.Add(2,"joaquin"); //agregando mediante funcion add, donde 2 es la llave y joaquin la definicion  
-            dic[0]="tomas"; //asi agregamos al dic la llave 0 son valor "tomas" 
+
+
+            var dic = new Dictionary<int, string>();
+            dic.Add(2, "joaquin"); //agregando mediante funcion add, donde 2 es la llave y joaquin la definicion  
+            dic[0] = "tomas"; //asi agregamos al dic la llave 0 son valor "tomas" 
             Console.WriteLine("Imprimimos el Diccionario");
             foreach (var keydic in dic)
             {
                 Console.WriteLine($"llave: {keydic.Key} valor: {keydic.Value}");
-            
-            }    
+
+            }
             var dicc = engine.GetDiccionarioDeObjetos();
-            Console.WriteLine("aaaaaaaaaaaaaaaaaaa");
-            
+            Console.WriteLine();
+
         }
     }
 }
-           
+
