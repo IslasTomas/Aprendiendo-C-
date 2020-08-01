@@ -25,18 +25,10 @@ namespace CorEscuela
                 Console.WriteLine($"llave: {keydic.Key} valor: {keydic.Value}");
             
             }    
-            var diccionario2= new Dictionary<string,string>(); //creamos diccionario con un string como llave 
-            diccionario2.Add("Tierra","La Tierra es un planeta del sistema solar");
-            diccionario2["Luna"]="La Luna es un curpo celeste que orbita al rededor de la Tierra";
-            Console.WriteLine("IMPRIMIMOS OTRO DICCIONARIO");
-            foreach (var keydic2 in diccionario2)
-            {
-                Console.WriteLine($"Llave: {keydic2.Key} Valor: {keydic2.Value}");
-            }
-            Console.WriteLine("OTra forma de imprimir");
-            Console.WriteLine(dic[0]);         //asi tmb podemos imprimir los diccionarios
-            Console.WriteLine(diccionario2["Tierra"]);//imprime el valor de la llave
-        }///LOS DICCIONARIOS NO PUEDEN TENER LLAVES REPETIDAS
+            var dicc = engine.GetDiccionarioDeObjetos();
+            Console.WriteLine("aaaaaaaaaaaaaaaaaaa");
+            
+        }
     }
 }
            

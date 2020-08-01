@@ -9,11 +9,17 @@ namespace CorEscuela
     class EscuelaEngine
     {
         public Escuela Escuela { get; set; }
-        public EscuelaEngine()
-        {
-
-
-
+        public Dictionary<string, IEnumerable<ObjetoEscuelaBase>> GetDiccionarioDeObjetos()
+        {///el IEnumerable engloba tnato listas como arreglos, asi podemos cargar listas en el diccionario
+        #region Explicacion del diccionario
+        ///el diccionario es una IEnumerable de objetos xq sino no puedo enviar muchos objetos con una clave
+         /// y no es una lista xq los cursos al ser una lista de cursos, nos da error ya que tenemos que definir explicitamente el tipo para 
+         /// que funcione el diccionario, por lo que la funcion Cast, nos deja convertirlos en tipo objeto escuela, pero lo retorna como IEnumerable
+          #endregion
+            var diccionario = new Dictionary<string,IEnumerable<ObjetoEscuelaBase>>();
+            diccionario.Add("Escuela",new[] {Escuela}); 
+            diccionario.Add("Cursos",Escuela.Cursos.Cast<ObjetoEscuelaBase>());
+            return diccionario;
         }
 
         public void Inicializar()
@@ -28,6 +34,8 @@ namespace CorEscuela
 
         }
         /// Lista todos los objetos creados que heredaron ObjetoEscuelaBase
+        #region listarObjetosEscuela
+            
         public IReadOnlyList<ObjetoEscuelaBase> listarObjetosEscuela(
             out int conteoAlumnos,
             out int conteoMaterias,
@@ -107,6 +115,7 @@ namespace CorEscuela
         {
             return listarObjetosEscuela(out conteoAlumnos, out conteoMaterias, out conteoCursos, out int dummy);
         }
+        #endregion
         private void CargarEvaluaciones()
         {
             foreach (var curso in Escuela.Cursos)
