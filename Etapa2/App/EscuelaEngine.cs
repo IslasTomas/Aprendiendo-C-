@@ -24,7 +24,7 @@ namespace CorEscuela
             diccionario.Add(LlaveDiccionario.Curso, Escuela.Cursos.Cast<ObjetoEscuelaBase>());
             var auxMaterias = new List<ObjetoEscuelaBase>();
             var auxAlumnos = new List<ObjetoEscuelaBase>();
-            var auxEvaluaciones = new List<ObjetoEscuelaBase>();
+            var auxEvaluaciones = new List<Evaluacion>();
             foreach (var cur in Escuela.Cursos)
             {
                 auxMaterias.AddRange(cur.Materias);
@@ -36,12 +36,39 @@ namespace CorEscuela
             }
             diccionario.Add(LlaveDiccionario.Alumno, auxAlumnos);
             diccionario.Add(LlaveDiccionario.Materia, auxMaterias);
-            diccionario.Add(LlaveDiccionario.Evaluaciones, auxEvaluaciones);
+            diccionario.Add(LlaveDiccionario.Evaluaciones, auxEvaluaciones.Cast<ObjetoEscuelaBase>());
             return diccionario;
         }
         ///imprimimos un diccionario
-        public void ImprimirDiccionario()
-        {}
+        public void ImprimirDiccionario(Dictionary<LlaveDiccionario, IEnumerable<ObjetoEscuelaBase>> dic, bool evaluaciones = false)
+        {
+            foreach (var llave in dic)
+            { if (llave.Key == LlaveDiccionario.Evaluaciones )
+            {
+                if (evaluaciones)
+                {
+                Console.WriteLine("-----------------------");
+                Console.WriteLine($"{llave.Key}");
+                Console.WriteLine("------------------------");
+                    foreach (var valor in llave.Value)
+                    {
+                        Console.WriteLine($"{valor}");                 
+                    }
+                }
+            }
+            else
+                {
+                    Console.WriteLine("-----------------------");
+                    Console.WriteLine($"{llave.Key}");
+                    Console.WriteLine("------------------------");
+                    foreach (var valor in llave.Value)
+                    {
+                        Console.WriteLine($"{valor}");                 
+                    }
+                }
+            
+            }
+        }  
         public void Inicializar()
         {
             Escuela = new Escuela("Saaan cayetano", 1960,
