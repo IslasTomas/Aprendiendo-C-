@@ -43,30 +43,35 @@ namespace CorEscuela
         public void ImprimirDiccionario(Dictionary<LlaveDiccionario, IEnumerable<ObjetoEscuelaBase>> dic, bool evaluaciones = false)
         {
             foreach (var llave in dic)
-            { if (llave.Key == LlaveDiccionario.Evaluaciones )
             {
-                if (evaluaciones)
-                {
                 Console.WriteLine("-----------------------");
                 Console.WriteLine($"{llave.Key}");
                 Console.WriteLine("------------------------");
-                    foreach (var valor in llave.Value)
-                    {
-                        Console.WriteLine($"{valor}");                 
-                    }
-                }
-            }
-            else
+        
+                foreach (var valor in llave.Value)
                 {
-                    Console.WriteLine("-----------------------");
-                    Console.WriteLine($"{llave.Key}");
-                    Console.WriteLine("------------------------");
-                    foreach (var valor in llave.Value)
+                    switch (llave.Key)
                     {
-                        Console.WriteLine($"{valor}");                 
+                        case LlaveDiccionario.Escuela:
+                            Console.WriteLine($"{valor.Nombre}");
+                        break;
+                        case LlaveDiccionario.Curso:
+                            Console.WriteLine($"{valor}");    
+                        break;
+                        case LlaveDiccionario.Alumno:
+                            Console.WriteLine(valor);
+                        break;
+                        case LlaveDiccionario.Evaluaciones:
+                            if (evaluaciones)
+                            {
+                                Console.WriteLine(valor);
+                            }
+                        break;
+                        default:
+                            Console.WriteLine(valor);
+                        break;
                     }
-                }
-            
+                 }
             }
         }  
         public void Inicializar()
@@ -82,7 +87,7 @@ namespace CorEscuela
         }
         /// Lista todos los objetos creados que heredaron ObjetoEscuelaBase
         #region listarObjetosEscuela
-
+        
         public IReadOnlyList<ObjetoEscuelaBase> listarObjetosEscuela(
             out int conteoAlumnos,
             out int conteoMaterias,
@@ -179,8 +184,8 @@ namespace CorEscuela
                             {
                                 Materia = materia,
                                 Nombre = $"{materia.Nombre} Ev#{i + 1}",
-                                Nota = (float)(5 * rnd.NextDouble()), //agregando float transformamos el numero en flotante
-                                Alumno = alumno
+                                Nota = (float)Math.Round((5 * rnd.NextDouble()),2), //agregando float transformamos el numero en flotante
+                                Alumno = alumno   //con Math.Round redondeamos el numero a los decimales q qeremos
                             };
                             alumno.Evaluaciones.Add(ev);          //agregamos el examen a alumno                                     //rnd.NextDouble genera numero del 0.0 al 1.0 
                         }
