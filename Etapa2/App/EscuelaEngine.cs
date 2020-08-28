@@ -9,6 +9,9 @@ namespace CorEscuela
     class EscuelaEngine
     {
         public Escuela Escuela { get; set; }
+        
+        
+        ///cargamos el diccionario
         public Dictionary<LlaveDiccionario, IEnumerable<ObjetoEscuelaBase>> GetDiccionarioDeObjetos()
         {///el IEnumerable engloba tnato listas como arreglos, asi podemos cargar listas en el diccionario
             #region Explicacion del diccionario
@@ -19,9 +22,26 @@ namespace CorEscuela
             var diccionario = new Dictionary<LlaveDiccionario, IEnumerable<ObjetoEscuelaBase>>();
             diccionario.Add(LlaveDiccionario.Escuela, new[] { Escuela });
             diccionario.Add(LlaveDiccionario.Curso, Escuela.Cursos.Cast<ObjetoEscuelaBase>());
+            var auxMaterias = new List<ObjetoEscuelaBase>();
+            var auxAlumnos = new List<ObjetoEscuelaBase>();
+            var auxEvaluaciones = new List<ObjetoEscuelaBase>();
+            foreach (var cur in Escuela.Cursos)
+            {
+                auxMaterias.AddRange(cur.Materias);
+                auxAlumnos.AddRange(cur.Alumnos);
+                foreach (var alum in cur.Alumnos)
+                {
+                    auxEvaluaciones.AddRange(alum.Evaluaciones);
+                }
+            }
+            diccionario.Add(LlaveDiccionario.Alumno, auxAlumnos);
+            diccionario.Add(LlaveDiccionario.Materia, auxMaterias);
+            diccionario.Add(LlaveDiccionario.Evaluaciones, auxEvaluaciones);
             return diccionario;
         }
-
+        ///imprimimos un diccionario
+        public void ImprimirDiccionario()
+        {}
         public void Inicializar()
         {
             Escuela = new Escuela("Saaan cayetano", 1960,

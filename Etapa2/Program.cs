@@ -27,6 +27,7 @@ namespace CorEscuela
             }
             var dicc = engine.GetDiccionarioDeObjetos();
             Console.WriteLine();
+            var dic2 = engine.GetDiccionarioDeObjetos();
 
         }
     }
