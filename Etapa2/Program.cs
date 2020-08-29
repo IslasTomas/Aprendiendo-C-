@@ -10,6 +10,12 @@ namespace CorEscuela
     {
         static void Main(string[] args)
         {
+            ///EVENTOS
+            AppDomain.CurrentDomain.ProcessExit += AccionDelEvento;
+            AppDomain.CurrentDomain.ProcessExit += (o,e)=> Console.Beep(1000,1000); // Multicast : Se ejecutan los 2 eventos de diferente manera
+            AppDomain.CurrentDomain.ProcessExit -= AccionDelEvento; // saco ese evento con el - es  decir no se ejecuta
+            //Este es un evento de finalizacion del programa
+            // El  EVENTO se genera en cualquier momento que termine la ejecucion
             var engine = new EscuelaEngine();
             engine.Inicializar();
             // ImprimirCursos(engine.escuela);
@@ -29,7 +35,12 @@ namespace CorEscuela
             Console.WriteLine();
             var dic2 = engine.GetDiccionarioDeObjetos();
             engine.ImprimirDiccionario(dic2,true);
+            
+        }
 
+        private static void AccionDelEvento(object sender, EventArgs e)
+        {
+            Console.Beep(2000,1000);
         }
     }
 }

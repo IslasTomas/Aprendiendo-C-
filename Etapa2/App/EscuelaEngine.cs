@@ -169,7 +169,7 @@ namespace CorEscuela
         }
         #endregion
         private void CargarEvaluaciones()
-        {
+        {   var rnd = new Random();   //numeros ramdom para la nota de las evaluaciones
             foreach (var curso in Escuela.Cursos)
             {
                 foreach (var materia in curso.Materias)
@@ -179,7 +179,7 @@ namespace CorEscuela
 
                         for (int i = 0; i < 5; i++)
                         {
-                            var rnd = new Random();   //numeros ramdom para la nota de las evaluaciones
+                           
                             var ev = new Evaluacion
                             {
                                 Materia = materia,
