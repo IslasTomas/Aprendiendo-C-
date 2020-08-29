@@ -4,7 +4,7 @@ using System.Linq;
 using CorEscuela.Entidades;
 using static System.Console;
 
-namespace CorEscuela
+namespace CorEscuela.App
 {
     class EscuelaEngine
     {

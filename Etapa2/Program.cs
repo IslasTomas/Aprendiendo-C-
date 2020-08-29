@@ -1,5 +1,5 @@
 ﻿using System;
-using CorEscuela;
+using CorEscuela.App;
 using CorEscuela.Entidades;
 using static System.Console;  //con esto cada vez q tenemos que usar funciones Consol no necesitamos poner Console
 using System.Collections.Generic;
@@ -12,7 +12,7 @@ namespace CorEscuela
         {
             ///EVENTOS
             AppDomain.CurrentDomain.ProcessExit += AccionDelEvento;
-            AppDomain.CurrentDomain.ProcessExit += (o,e)=> Console.Beep(1000,1000); // Multicast : Se ejecutan los 2 eventos de diferente manera
+            AppDomain.CurrentDomain.ProcessExit += (o,e)=> Console.Beep(1500,500); // Multicast : Se ejecutan los 2 eventos de diferente manera
             AppDomain.CurrentDomain.ProcessExit -= AccionDelEvento; // saco ese evento con el - es  decir no se ejecuta
             //Este es un evento de finalizacion del programa
             // El  EVENTO se genera en cualquier momento que termine la ejecucion
@@ -26,16 +26,16 @@ namespace CorEscuela
             dic.Add(2, "joaquin"); //agregando mediante funcion add, donde 2 es la llave y joaquin la definicion  
             dic[0] = "tomas"; //asi agregamos al dic la llave 0 son valor "tomas" 
             Console.WriteLine("Imprimimos el Diccionario");
-            foreach (var keydic in dic)
-            {
-                Console.WriteLine($"llave: {keydic.Key} valor: {keydic.Value}");
-
-            }
+           // foreach (var keydic in dic)
+           // {
+           //     Console.WriteLine($"llave: {keydic.Key} valor: {keydic.Value}");
+           //  }
             var dicc = engine.GetDiccionarioDeObjetos();
             Console.WriteLine();
-            var dic2 = engine.GetDiccionarioDeObjetos();
-            engine.ImprimirDiccionario(dic2,true);
-            
+            //var dic2 = engine.GetDiccionarioDeObjetos();
+            //engine.ImprimirDiccionario(dic2,true);
+            var reporteardor= new Reporteador(dicc);
+            var listEval= reporteardor.GetListaEvaluacion();
         }
 
         private static void AccionDelEvento(object sender, EventArgs e)
