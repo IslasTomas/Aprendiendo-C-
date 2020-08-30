@@ -40,15 +40,32 @@ namespace CorEscuela.App
             }
 
         }
-        public IEnumerable<string> GetListaMaterias()
+        public IEnumerable<string> GetListaMaterias()  //sobrecargadel metoro GetListaMaterias de esta forma podemos usar el metodo sin un parametrp de salida
         {
-            var listaEvaluaciones = GetListaEvaluaciones();
+            return GetListaMaterias(out var dummy);
+        }
+        public IEnumerable<string> GetListaMaterias(out IEnumerable<Evaluacion> listaEvaluaciones)// salida la lista de evaluaciones
+        {
+            listaEvaluaciones = GetListaEvaluaciones();
          //   return (from ev in listaEvaluaciones  //esto lo hacemos con Linq(nos permite hacer consultas similares a un query)
           //          select ev.Materia.Nombre);    //esto de cada "ev" selecciona el nombre de la materia q corresponde
             return (from ev in listaEvaluaciones
                     //Where  ev.Nota > 3.0f  (con ese where podemos filtrar em cada parametro de "ev" 
                     select ev.Materia.Nombre).Distinct(); // con el funcion Distinct solo va a devolver "ev.materia.nombre" que sean distintos
 
+        }
+        public Dictionary<string, IEnumerable<Evaluacion>> GetDicEvaluaciones()
+        {
+            var dic= new Dictionary<string, IEnumerable<Evaluacion>>();
+            var materias=GetListaMaterias(out var evalus);
+            foreach (var mat in materias)
+            {
+                var evls=(from ev in evalus
+                            where ev.Materia.Nombre == mat
+                            select ev);
+                dic.Add(mat,evls);
+            }
+            return dic;
         }
 
 

@@ -37,6 +37,7 @@ namespace CorEscuela
             var reporteardor= new Reporteador(dicc);
             var listEval= reporteardor.GetListaEvaluaciones();
             var listaMaterias= reporteardor.GetListaMaterias();
+            var DiccionarioEvaluaciones= reporteardor.GetDicEvaluaciones();
         }
 
         private static void AccionDelEvento(object sender, EventArgs e)
