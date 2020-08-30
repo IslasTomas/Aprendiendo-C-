@@ -8,7 +8,7 @@ namespace CorEscuela.App
 {
     public class Reporteador
     {
-        Dictionary <LlaveDiccionario, IEnumerable<ObjetoEscuelaBase>> _diccionario;// el _ es una convencion para indicar q es privado
+        Dictionary<LlaveDiccionario, IEnumerable<ObjetoEscuelaBase>> _diccionario;// el _ es una convencion para indicar q es privado
         public Reporteador(Dictionary<LlaveDiccionario, IEnumerable<ObjetoEscuelaBase>> dicObjEsc)
         {
             if (dicObjEsc == null) // comprobamos q el parametro no sea null
@@ -20,7 +20,7 @@ namespace CorEscuela.App
 
             _diccionario = dicObjEsc;
         }
-        public IEnumerable<Evaluacion> GetListaEvaluacion()
+        public IEnumerable<Evaluacion> GetListaEvaluaciones()
         {
             var lista = _diccionario.GetValueOrDefault(LlaveDiccionario.Evaluaciones);//develve el valor especificado, sino lo encuentra retorna null
             var respuesta = _diccionario.TryGetValue(LlaveDiccionario.Evaluaciones, out IEnumerable<ObjetoEscuelaBase> listado);
@@ -29,18 +29,28 @@ namespace CorEscuela.App
             //return listado.Cast<Evaluacion>(); de esta forma retornamos el output de TryGetValue
 
             //mejor forma de implementacion
-            IEnumerable<Evaluacion> respuesta2;
             if (_diccionario.TryGetValue(LlaveDiccionario.Evaluaciones, out IEnumerable<ObjetoEscuelaBase> listado2))
             {
-                respuesta2=listado2.Cast<Evaluacion>();
+                return listado2.Cast<Evaluacion>();
             }
             else
             {
                 Console.WriteLine($"la LLave {LlaveDiccionario.Evaluaciones} esta vacia");
-                respuesta2=null;
+                return new List<Evaluacion>();
             }
-            return respuesta2;
+
         }
+        public IEnumerable<string> GetListaMaterias()
+        {
+            var listaEvaluaciones = GetListaEvaluaciones();
+         //   return (from ev in listaEvaluaciones  //esto lo hacemos con Linq(nos permite hacer consultas similares a un query)
+          //          select ev.Materia.Nombre);    //esto de cada "ev" selecciona el nombre de la materia q corresponde
+            return (from ev in listaEvaluaciones
+                    //Where  ev.Nota > 3.0f  (con ese where podemos filtrar em cada parametro de "ev" 
+                    select ev.Materia.Nombre).Distinct(); // con el funcion Distinct solo va a devolver "ev.materia.nombre" que sean distintos
+
+        }
+
 
     }
 }
