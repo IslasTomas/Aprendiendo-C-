@@ -75,15 +75,17 @@ namespace CorEscuela.App
             foreach (var asigConEval in dicEvalXMaterias)
             {
                 var dummy = from eval in asigConEval.Value
-                            
+                            group eval by eval.Alumno.UniqueId//agrupa todos los objetos eval que tengan el mismo UniqueId
+                            into grupoEvalsAlumno             //"into" agrupa todos los objetos eval del mismo ID en "grupoEvalsAlumno"
                             
                             select new                  //Creamos un Objeto "anonimo"(es decir no creamos la clase de ese objeto)
-                            {                           //y podemos ponerle los atributos que querramos
-                                eval.Alumno.UniqueId,
-                                eval.Nota,
-                                alumnoNombre=eval.Alumno.Nombre,
-                                evaluacionNombre=eval.Nombre
-
+                            {                           
+                                grupoEvalsAlumno.Key,   //la llave es el atributo por el cual agrupamos, en este caso el UniqueID de cada eval
+                                promedio = grupoEvalsAlumno.Average(evaluacion=> evaluacion.Nota)
+                                //promedio es un atributo del objeto anonimo que creamos
+                                //a promedio le asignamos, el promedio de las notas que tenia cada objeto eval
+                                //el promedio lo obtuvimos de la funcion "Average()" que calcula el promedio del grupo que definimos anteriormente
+                                //linq no ofrece muchas mas funciones para el grupo
                             };
                 
             }
