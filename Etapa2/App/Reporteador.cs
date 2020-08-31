@@ -68,30 +68,32 @@ namespace CorEscuela.App
             return dic;
         }
 
-        public Dictionary<string, IEnumerable<object>> GetPromedioAlumnosPorMateria()
+        public Dictionary<string, IEnumerable<AlumnoPromedio>> GetPromedioAlumnosPorMateria()
         {
-
+            var rta = new Dictionary<string, IEnumerable<AlumnoPromedio>>();
             var dicEvalXMaterias = GetDicEvaluacionesXMateria();
             foreach (var asigConEval in dicEvalXMaterias)
             {
-                var dummy = from eval in asigConEval.Value
-                            group eval by eval.Alumno.UniqueId//agrupa todos los objetos eval que tengan el mismo UniqueId
+                var promedioAlumnos = from eval in asigConEval.Value
+                            group eval by new {eval.Alumno.UniqueId,//agrupa todos los objetos eval que tengan el mismo UniqueId
+                            eval.Alumno.Nombre}
                             into grupoEvalsAlumno             //"into" agrupa todos los objetos eval del mismo ID en "grupoEvalsAlumno"
                             
-                            select new                  //Creamos un Objeto "anonimo"(es decir no creamos la clase de ese objeto)
+                            select new AlumnoPromedio          
                             {                           
-                                grupoEvalsAlumno.Key,   //la llave es el atributo por el cual agrupamos, en este caso el UniqueID de cada eval
-                                promedio = grupoEvalsAlumno.Average(evaluacion=> evaluacion.Nota)
+                                alumnoid = grupoEvalsAlumno.Key.UniqueId,   //la llave es el atributo por el cual agrupamos, en este caso el UniqueID de cada eval
+                                promedio = grupoEvalsAlumno.Average(evaluacion=> evaluacion.Nota),
+                                alumnoNombre = grupoEvalsAlumno.Key.Nombre                                
                                 //promedio es un atributo del objeto anonimo que creamos
                                 //a promedio le asignamos, el promedio de las notas que tenia cada objeto eval
                                 //el promedio lo obtuvimos de la funcion "Average()" que calcula el promedio del grupo que definimos anteriormente
                                 //linq no ofrece muchas mas funciones para el grupo
                             };
-                
+                rta.Add(asigConEval.Key,promedioAlumnos);
             }
 
 
-            var rta = new Dictionary<string, IEnumerable<object>>();
+            
             return rta;
 
         }

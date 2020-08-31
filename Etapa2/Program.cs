@@ -39,6 +39,16 @@ namespace CorEscuela
             var listaMaterias= reporteardor.GetListaMaterias();
             var DiccionarioEvaluaciones= reporteardor.GetDicEvaluacionesXMateria();
             var promedio=reporteardor.GetPromedioAlumnosPorMateria();
+            foreach (var item in promedio)
+            {
+                Console.WriteLine("---------------------");
+                Console.WriteLine(item.Key.ToUpper());
+                Console.WriteLine("---------------------");
+                foreach (var alum in item.Value)
+                {
+                    Console.WriteLine($"Alumno: {alum.alumnoNombre} Promedio: {alum.promedio}");
+                }
+            }
         }
 
           private static void AccionDelEvento(object sender, EventArgs e)
