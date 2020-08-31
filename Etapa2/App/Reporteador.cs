@@ -47,27 +47,52 @@ namespace CorEscuela.App
         public IEnumerable<string> GetListaMaterias(out IEnumerable<Evaluacion> listaEvaluaciones)// salida la lista de evaluaciones
         {
             listaEvaluaciones = GetListaEvaluaciones();
-         //   return (from ev in listaEvaluaciones  //esto lo hacemos con Linq(nos permite hacer consultas similares a un query)
-          //          select ev.Materia.Nombre);    //esto de cada "ev" selecciona el nombre de la materia q corresponde
+            //   return (from ev in listaEvaluaciones  //esto lo hacemos con Linq(nos permite hacer consultas similares a un query)
+            //          select ev.Materia.Nombre);    //esto de cada "ev" selecciona el nombre de la materia q corresponde
             return (from ev in listaEvaluaciones
-                    //Where  ev.Nota > 3.0f  (con ese where podemos filtrar em cada parametro de "ev" 
+                        //Where  ev.Nota > 3.0f  (con ese where podemos filtrar em cada parametro de "ev" 
                     select ev.Materia.Nombre).Distinct(); // con el funcion Distinct solo va a devolver "ev.materia.nombre" que sean distintos
 
         }
-        public Dictionary<string, IEnumerable<Evaluacion>> GetDicEvaluaciones()
+        public Dictionary<string, IEnumerable<Evaluacion>> GetDicEvaluacionesXMateria()
         {
-            var dic= new Dictionary<string, IEnumerable<Evaluacion>>();
-            var materias=GetListaMaterias(out var evalus);
+            var dic = new Dictionary<string, IEnumerable<Evaluacion>>();
+            var materias = GetListaMaterias(out var evalus);
             foreach (var mat in materias)
             {
-                var evls=(from ev in evalus
+                var evls = (from ev in evalus
                             where ev.Materia.Nombre == mat
                             select ev);
-                dic.Add(mat,evls);
+                dic.Add(mat, evls);
             }
             return dic;
         }
 
+        public Dictionary<string, IEnumerable<object>> GetPromedioAlumnosPorMateria()
+        {
+
+            var dicEvalXMaterias = GetDicEvaluacionesXMateria();
+            foreach (var asigConEval in dicEvalXMaterias)
+            {
+                var dummy = from eval in asigConEval.Value
+                            
+                            
+                            select new                  //Creamos un Objeto "anonimo"(es decir no creamos la clase de ese objeto)
+                            {                           //y podemos ponerle los atributos que querramos
+                                eval.Alumno.UniqueId,
+                                eval.Nota,
+                                alumnoNombre=eval.Alumno.Nombre,
+                                evaluacionNombre=eval.Nombre
+
+                            };
+                
+            }
+
+
+            var rta = new Dictionary<string, IEnumerable<object>>();
+            return rta;
+
+        }
 
     }
 }
