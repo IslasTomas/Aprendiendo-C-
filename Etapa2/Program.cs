@@ -56,12 +56,31 @@ namespace CorEscuela
             notaString=ReadLine();
             if (string.IsNullOrWhiteSpace(notaString))
             {
-               throw new ArgumentException("Debe ingresar una nota"); 
+               WriteLine("Debe ingresar una nota"); 
+               WriteLine("Saliendo del programa");
             }
             else
             {
+                try{
                 newEval.Nota=float.Parse(notaString);
+                if (newEval.Nota <0 || newEval.Nota >5)
+                {
+                   throw new ArgumentOutOfRangeException("La nota debe estar entre 0 y 5");
+                   //este throw se usa para que salga del programa y no continue
+                }
                 WriteLine("La nota fue ingresada correctamente");
+                }
+                catch(ArgumentOutOfRangeException arge)  //se le puede hacer un objeto 
+                {
+                    WriteLine(arge.Message);
+                    WriteLine("La nota debe ser un numero entre 0 y 5");
+                }
+                catch(Exception)
+                {
+                   WriteLine("El valor de la nota no es un numero valido");
+                }
+                //dependiendo el tipo de exception ejecuta un catch o el otro
+                // las excepciones tiene un orden en cascada, EL ORDEN ES IMPORTANTE
             }
         }
 
