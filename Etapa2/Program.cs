@@ -39,15 +39,29 @@ namespace CorEscuela
             var listaMaterias= reporteardor.GetListaMaterias();
             var DiccionarioEvaluaciones= reporteardor.GetDicEvaluacionesXMateria();
             var promedio=reporteardor.GetPromedioAlumnosPorMateria();
-            foreach (var item in promedio)
+            var newEval= new Evaluacion();
+            string nombre,notaString;
+            WriteLine("Ingrese nombre de la evaluacion");
+            nombre=ReadLine();
+            if (string.IsNullOrWhiteSpace(nombre))
             {
-                Console.WriteLine("---------------------");
-                Console.WriteLine(item.Key.ToUpper());
-                Console.WriteLine("---------------------");
-                foreach (var alum in item.Value)
-                {
-                    Console.WriteLine($"Alumno: {alum.alumnoNombre} Promedio: {alum.promedio}");
-                }
+                throw new ArgumentException("Debe ingresar un nombre");
+            }
+            else
+            {
+               newEval.Nombre=nombre.ToLower();
+               WriteLine("El nombre fue ingresado correctamente"); 
+            }
+            WriteLine("Ingrese nota de la evaluacion");
+            notaString=ReadLine();
+            if (string.IsNullOrWhiteSpace(notaString))
+            {
+               throw new ArgumentException("Debe ingresar una nota"); 
+            }
+            else
+            {
+                newEval.Nota=float.Parse(notaString);
+                WriteLine("La nota fue ingresada correctamente");
             }
         }
 
