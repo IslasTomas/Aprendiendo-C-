@@ -12,8 +12,8 @@ namespace CorEscuela
         {
             ///EVENTOS
             AppDomain.CurrentDomain.ProcessExit += AccionDelEvento;
-            AppDomain.CurrentDomain.ProcessExit += (o,e)=> Console.Beep(2000,500); // Multicast : Se ejecutan los 2 eventos de diferente manera
-            AppDomain.CurrentDomain.ProcessExit -= AccionDelEvento; // saco ese evento con el - es  decir no se ejecuta
+            AppDomain.CurrentDomain.ProcessExit += (o, e) => Console.Beep(2000, 500); // Multicast : Se ejecutan los 2 eventos de diferente manera
+            //AppDomain.CurrentDomain.ProcessExit -= AccionDelEvento; // saco ese evento con el - es  decir no se ejecuta
             //Este es un evento de finalizacion del programa
             // El  EVENTO se genera en cualquier momento que termine la ejecucion
             var engine = new EscuelaEngine();
@@ -26,67 +26,77 @@ namespace CorEscuela
             dic.Add(2, "joaquin"); //agregando mediante funcion add, donde 2 es la llave y joaquin la definicion  
             dic[0] = "tomas"; //asi agregamos al dic la llave 0 son valor "tomas" 
             Console.WriteLine("Imprimimos el Diccionario");
-           // foreach (var keydic in dic)
-           // {
-           //     Console.WriteLine($"llave: {keydic.Key} valor: {keydic.Value}");
-           //  }
+            // foreach (var keydic in dic)
+            // {
+            //     Console.WriteLine($"llave: {keydic.Key} valor: {keydic.Value}");
+            //  }
             var dicc = engine.GetDiccionarioDeObjetos();
             Console.WriteLine();
             //var dic2 = engine.GetDiccionarioDeObjetos();
             //engine.ImprimirDiccionario(dic2,true);
-            var reporteardor= new Reporteador(dicc);
-            var listEval= reporteardor.GetListaEvaluaciones();
-            var listaMaterias= reporteardor.GetListaMaterias();
-            var DiccionarioEvaluaciones= reporteardor.GetDicEvaluacionesXMateria();
-            var promedio=reporteardor.GetPromedioAlumnosPorMateria();
-            var newEval= new Evaluacion();
-            string nombre,notaString;
+            var reporteardor = new Reporteador(dicc);
+            var listEval = reporteardor.GetListaEvaluaciones();
+            var listaMaterias = reporteardor.GetListaMaterias();
+            var DiccionarioEvaluaciones = reporteardor.GetDicEvaluacionesXMateria();
+            var promedio = reporteardor.GetPromedioAlumnosPorMateria();
+            var newEval = new Evaluacion();
+            string nombre, notaString;
             WriteLine("Ingrese nombre de la evaluacion");
-            nombre=ReadLine();
+            nombre = ReadLine();
             if (string.IsNullOrWhiteSpace(nombre))
             {
                 throw new ArgumentException("Debe ingresar un nombre");
             }
             else
             {
-               newEval.Nombre=nombre.ToLower();
-               WriteLine("El nombre fue ingresado correctamente"); 
+                newEval.Nombre = nombre.ToLower();
+                WriteLine("El nombre fue ingresado correctamente");
             }
             WriteLine("Ingrese nota de la evaluacion");
-            notaString=ReadLine();
+            notaString = ReadLine();
             if (string.IsNullOrWhiteSpace(notaString))
             {
-               WriteLine("Debe ingresar una nota"); 
-               WriteLine("Saliendo del programa");
+                WriteLine("Debe ingresar una nota");
+                WriteLine("Saliendo del programa");
             }
             else
             {
-                try{
-                newEval.Nota=float.Parse(notaString);
-                if (newEval.Nota <0 || newEval.Nota >5)
+                try
                 {
-                   throw new ArgumentOutOfRangeException("La nota debe estar entre 0 y 5");
-                   //este throw se usa para que salga del programa y no continue
+                    newEval.Nota = float.Parse(notaString);
+                    if (newEval.Nota < 0 || newEval.Nota > 5)
+                    {
+                        throw new ArgumentOutOfRangeException("La nota debe estar entre 0 y 5");
+                        //este throw se usa para que salga del programa y no continue
+                    }
+                    WriteLine("La nota fue ingresada correctamente");
                 }
-                WriteLine("La nota fue ingresada correctamente");
-                }
-                catch(ArgumentOutOfRangeException arge)  //se le puede hacer un objeto 
+                catch (ArgumentOutOfRangeException arge)  //se le puede hacer un objeto 
                 {
                     WriteLine(arge.Message);
                     WriteLine("La nota debe ser un numero entre 0 y 5");
                 }
-                catch(Exception)
+                catch (Exception)
                 {
-                   WriteLine("El valor de la nota no es un numero valido");
+                    WriteLine("El valor de la nota no es un numero valido");
                 }
                 //dependiendo el tipo de exception ejecuta un catch o el otro
                 // las excepciones tiene un orden en cascada, EL ORDEN ES IMPORTANTE
+                finally
+                {
+                    //permite atrapar excepciones inesperaddas o q no podemos controlar
+                    //Se ejecuta siempre no importa donde termine el programa siempre se ejecuta,
+                    //siempre antes de terminar el programa se ejecuta el finally se ejecuta y luego termina el programa
+                    Console.Beep(4500, 500);
+                    WriteLine("FINALLY");   
+                }
             }
         }
 
-          private static void AccionDelEvento(object sender, EventArgs e)
+        private static void AccionDelEvento(object sender, EventArgs e)
         {
-            Console.Beep(2000,1000);
+            Console.Beep(2000, 1000);
+            WriteLine("SALIO");
         }
     }
 }
